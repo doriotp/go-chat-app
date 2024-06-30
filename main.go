@@ -13,7 +13,7 @@ import (
 
 func main() {
 
-	if os.Getenv("env")!="production"{
+	if os.Getenv("ENV")!="PRODUCTION"{
 		err:= godotenv.Load(".env")
 		if err!=nil{
 			log.Printf("error:%s", err) 

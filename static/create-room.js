@@ -10,10 +10,9 @@ function generateRoomId() {
 
 function createRoom() {
     const roomNameInput = document.getElementById('room-name-input').value;
-    username = document.getElementById('username').value;
     roomId = generateRoomId();
 
-    if (roomNameInput && username) {
+    if (roomNameInput) {
         fetch('/ws/createRoom', {
             method: 'POST',
             headers: {

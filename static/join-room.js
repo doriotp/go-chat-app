@@ -24,7 +24,10 @@ function joinRoom(roomId, roomName) {
     document.getElementById('room-name').textContent = `Room: ${roomName}`;
     document.getElementById('chat-room').style.display = 'block';
 
-    socket = new WebSocket(`ws://${location.host}/ws/joinRoom/${roomId}?userId=${userId}&username=${username}`);
+    const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const wsUrl = `${protocol}//${location.host}/ws/joinRoom/${roomId}?userId=${userId}&username=${username}`;
+
+    socket = new WebSocket(wsUrl);
 
     socket.onopen = () => {
         console.log('Connected to the chat room');
@@ -90,7 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     roomId = urlParams.get('roomId');
     roomName = urlParams.get('roomName');
-    console.log(1)
 
     if (roomId && roomName) {
         document.getElementById('join-room').style.display = 'block';
